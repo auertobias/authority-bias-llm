@@ -1,0 +1,65 @@
+# src/models.py
+from src.config import TEMPERATURE, MAX_TOKENS
+
+
+def make_gemini_fn(api_key, model_name='gemini-2.5-flash'):
+    """Create a Gemini caller. Returns a function: prompt → response text."""
+    from google import genai
+    from google.genai import types
+    client = genai.Client(api_key=api_key)
+
+    def run(prompt):
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    temperature=TEMPERATURE,
+                    max_output_tokens=MAX_TOKENS,
+                )
+            )
+            return response.text
+        except Exception as e:
+            print(f"  Gemini error: {e}")
+            return None
+    return run
+
+
+def make_gpt_fn(api_key, model_name='gpt-4o-mini'):
+    """Create a GPT caller. Returns a function: prompt → response text."""
+    import openai
+    client = openai.OpenAI(api_key=api_key)
+
+    def run(prompt):
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=TEMPERATURE,
+                max_tokens=MAX_TOKENS,
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            print(f"  GPT error: {e}")
+            return None
+    return run
+
+
+def make_claude_fn(api_key, model_name='claude-sonnet-4-20250514'):
+    """Create a Claude caller. Returns a function: prompt → response text."""
+    import anthropic
+    client = anthropic.Anthropic(api_key=api_key)
+
+    def run(prompt):
+        try:
+            message = client.messages.create(
+                model=model_name,
+                max_tokens=MAX_TOKENS,
+                temperature=TEMPERATURE,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return message.content[0].text
+        except Exception as e:
+            print(f"  Claude error: {e}")
+            return None
+    return run

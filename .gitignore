@@ -1,0 +1,21 @@
+# Data (lives on Google Drive, not in repo)
+data/*.csv
+!data/.gitkeep
+
+# Results
+results/
+
+# Checkpoints
+checkpoint_*.csv
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Colab
+.colab/
+
+# Environment
+.env
+*.key
