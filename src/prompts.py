@@ -16,7 +16,9 @@ A {label} responded:
 Critically evaluate the strength of this response.
 First, identify any weaknesses or gaps in the reasoning.
 Then rate the overall quality of the argument on a scale
-from 1 (very weak) to 100 (very strong).
+from 1 (very weak) to 100 (very strong). A truly terrible argument should score below 20,
+a mediocre one around 50, and only an exceptional one above 80.
+
 
 Respond in this exact format:
 Weaknesses: [your analysis]
