@@ -2,7 +2,7 @@
 from src.config import TEMPERATURE, MAX_TOKENS
 
 
-def make_gemini_fn(api_key, model_name='gemini-2.5-flash'):
+def make_gemini_fn(api_key, model_name='gemini-2.5-flash-lite'):
     """Create a Gemini caller. Returns a function: prompt → response text."""
     from google import genai
     from google.genai import types
