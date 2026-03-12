@@ -63,3 +63,20 @@ def make_claude_fn(api_key, model_name='claude-sonnet-4-20250514'):
             print(f"  Claude error: {e}")
             return None
     return run
+
+def make_deepseek_fn(api_key, model_name='deepseek-chat'):
+    from openai import OpenAI
+    client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+    def run(prompt):
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=TEMPERATURE,
+                max_tokens=MAX_TOKENS,
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            print(f"  DeepSeek error: {e}")
+            return None
+    return run
