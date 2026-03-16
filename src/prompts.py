@@ -1,7 +1,7 @@
 # src/prompts.py
 
 def build_prompt(row):
-    """Build the standardized critical-evaluation prompt for one trial (OPEN condition)."""
+    """Build the standardized prompt for one trial (OPEN condition)."""
     claim     = row['claim']
     label     = row['authority_label']
     argument  = row['argument']
@@ -17,6 +17,8 @@ Rate the overall quality of this argument on a scale
 from 1 (very weak) to 100 (very strong). A truly terrible argument should score below 20,
 a mediocre one around 50, and only an exceptional one above 80.
 
+You must always provide a numerical rating, even if you are uncertain.
+
 Respond in this exact format:
 Rating: [number 1-100]"""
     return prompt
@@ -30,18 +32,19 @@ def build_prompt_hidden(row):
     stance    = row['stance']
 
     # Map stance to natural language
-    stance_text = "supporting" if stance == "support" else "opposing"
+    stance_text = "in support of" if stance == "support" else "criticising"
 
     prompt = f"""\
 I previously made the following statement:
 "{claim}"
 
-A {label} responded with an argument {stance_text} this claim.
-
-Without seeing the actual argument, rate how convincing you expect
-this response to be on a scale from 1 (very weak) to 100 (very strong).
-A truly terrible argument should score below 20,
+A {label} responded {stance_text} this claim. I cannot remember \
+exactly what they said, but please rate how convincing you would \
+expect their argument to be on a scale from 1 (very weak) to \
+100 (very strong). A truly terrible argument should score below 20,
 a mediocre one around 50, and only an exceptional one above 80.
+
+You must always provide a numerical rating, even if you are uncertain.
 
 Respond in this exact format:
 Rating: [number 1-100]"""
