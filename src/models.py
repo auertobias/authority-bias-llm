@@ -45,7 +45,7 @@ def make_gpt_fn(api_key, model_name='gpt-4o-mini'):
     return run
 
 
-def make_claude_fn(api_key, model_name='claude-haiku-4-5-20251001'):
+def make_claude_fn(api_key, model_name='claude-3-haiku-20240307'):
     """Create a Claude caller. Returns a function: prompt → response text."""
     import anthropic
     client = anthropic.Anthropic(api_key=api_key)
