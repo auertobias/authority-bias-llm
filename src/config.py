@@ -11,4 +11,4 @@ N_REPS           = 1      # 1 for testing, 10+ for the paper
 PAUSE_SECONDS    = 0.5    # delay between API calls
 CHECKPOINT_EVERY = 50     # save progress every N trials
 TEMPERATURE      = 0.7
-MAX_TOKENS       = 2000
+MAX_TOKENS       = 4096
