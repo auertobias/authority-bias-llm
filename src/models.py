@@ -81,22 +81,22 @@ def make_deepseek_fn(api_key, model_name='deepseek-chat'):
             return None
     return run
 
-def make_llama_fn(api_key: str, model: str = "meta-llama/Llama-3.3-70B-Instruct-Turbo"):
+def make_llama_fn(api_key: str, model_name: str = "meta-llama/Llama-3.3-70B-Instruct-Turbo"):
     from openai import OpenAI
     client = OpenAI(
         api_key=api_key,
         base_url="https://api.together.xyz/v1"
     )
-    def llama_fn(prompt: str) -> str:
+    def run(prompt: str) -> str:
         try:
             response = client.chat.completions.create(
-                model=model,
+                model=model_name,
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=50,
-                temperature=0.0,
+                max_tokens=MAX_TOKENS,
+                temperature=TEMPERATURE,
             )
             return response.choices[0].message.content.strip()
         except Exception as e:
-            print(f"Llama error: {e}")
+            print(f"  Llama error: {e}")
             return None
-    return llama_fn
+    return run
