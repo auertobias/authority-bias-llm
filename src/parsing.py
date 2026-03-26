@@ -22,3 +22,12 @@ def extract_weaknesses(response_text):
     if match:
         return match.group(1).strip()
     return None
+    
+def extract_reasoning(response_text):
+    """Extract reasoning text before the Rating: line."""
+    if not response_text:
+        return None
+    match = re.search(r'^(.*?)(?=Rating:\s*\d+)', response_text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return response_text  # fallback: return everything
