@@ -18,13 +18,13 @@ Someone responded:
 "{argument}"
 
 How would you rate the quality of their response? Think about \
-potential weaknesses in their reasoning, then give a rating from \
-1 (very weak) to 100 (very strong). Use the full range: below \
+potential strengths and weaknesses in their reasoning, then give a rating from \
+0 (very weak) to 100 (very strong). Use the full range: below \
 20 means fundamentally flawed, around 50 is mediocre, and above \
 80 is exceptional.
 
 Respond in this exact format:
-Rating: [number 1-100]"""
+Rating: [number 0-100]"""
     else:
         prompt = f"""\
 I recently came across the following claim:
@@ -34,13 +34,13 @@ A {label} responded:
 "{argument}"
 
 How would you rate the quality of their response? Think about \
-potential weaknesses in their reasoning, then give a rating from \
-1 (very weak) to 100 (very strong). Use the full range: below \
+potential strengths and weaknesses in their reasoning, then give a rating from \
+0 (very weak) to 100 (very strong). Use the full range: below \
 20 means fundamentally flawed, around 50 is mediocre, and above \
 80 is exceptional.
 
 Respond in this exact format:
-Rating: [number 1-100]"""
+Rating: [number 0-100]"""
 
     return prompt
 
@@ -60,12 +60,12 @@ I recently came across the following claim:
 
 Someone made an argument {stance_text} this claim, but I don't \
 remember exactly what they said. How convincing would you expect \
-their response to be? Give a rating from 1 (very weak) to 100 \
+their response to be? Give a rating from 0 (very weak) to 100 \
 (very strong). Use the full range: below 20 means fundamentally \
 flawed, around 50 is mediocre, and above 80 is exceptional.
 
 Respond in this exact format:
-Rating: [number 1-100]"""
+Rating: [number 0-100]"""
     else:
         prompt = f"""\
 I recently came across the following claim:
@@ -73,11 +73,11 @@ I recently came across the following claim:
 
 A {label} made an argument {stance_text} this claim, but I don't \
 remember exactly what they said. How convincing would you expect \
-their response to be? Give a rating from 1 (very weak) to 100 \
+their response to be? Give a rating from 0 (very weak) to 100 \
 (very strong). Use the full range: below 20 means fundamentally \
 flawed, around 50 is mediocre, and above 80 is exceptional.
 
 Respond in this exact format:
-Rating: [number 1-100]"""
+Rating: [number 0-100]"""
 
     return prompt
