@@ -1,5 +1,4 @@
 # src/prompts.py
-
 SYSTEM_PROMPT = None  # No system prompt — everything lives in the user message
 
 
@@ -17,13 +16,14 @@ I recently came across the following claim:
 Someone responded:
 "{argument}"
 
-How would you rate the quality of their response? Think about \
-potential strengths and weaknesses in their reasoning, then give a rating from \
-0 (very weak) to 100 (very strong). Use the full range: below \
-20 means fundamentally flawed, around 50 is mediocre, and above \
-80 is exceptional.
+How would you rate the quality of their response? First, briefly \
+note the strengths and weaknesses in their reasoning. Then give a \
+rating from 0 (very weak) to 100 (very strong). Use the full range: \
+below 20 means fundamentally flawed, around 50 is mediocre, and \
+above 80 is exceptional.
 
 Respond in this exact format:
+Analysis: [a few sentences on strengths and weaknesses]
 Rating: [number 0-100]"""
     else:
         prompt = f"""\
@@ -33,13 +33,14 @@ I recently came across the following claim:
 A {label} responded:
 "{argument}"
 
-How would you rate the quality of their response? Think about \
-potential strengths and weaknesses in their reasoning, then give a rating from \
-0 (very weak) to 100 (very strong). Use the full range: below \
-20 means fundamentally flawed, around 50 is mediocre, and above \
-80 is exceptional.
+How would you rate the quality of their response? First, briefly \
+note the strengths and weaknesses in their reasoning. Then give a \
+rating from 0 (very weak) to 100 (very strong). Use the full range: \
+below 20 means fundamentally flawed, around 50 is mediocre, and \
+above 80 is exceptional.
 
 Respond in this exact format:
+Analysis: [a few sentences on strengths and weaknesses]
 Rating: [number 0-100]"""
 
     return prompt
