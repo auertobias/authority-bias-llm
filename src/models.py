@@ -25,7 +25,7 @@ def make_gemini_fn(api_key, model_name='gemini-2.5-flash'):
     return run
 
 
-def make_gpt_fn(api_key, model_name='gpt-4o-mini'):
+def make_gpt_fn(api_key, model_name='gpt-5.4-nano'):
     """Create a GPT caller. Returns a function: prompt → response text."""
     import openai
     client = openai.OpenAI(api_key=api_key)
