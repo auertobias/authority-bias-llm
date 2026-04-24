@@ -26,18 +26,25 @@ def make_gemini_fn(api_key, model_name='gemini-2.5-flash'):
 
 
 def make_gpt_fn(api_key, model_name='gpt-5.4-nano'):
-    """Create a GPT caller. Returns a function: prompt → response text."""
     import openai
     client = openai.OpenAI(api_key=api_key)
 
+    is_gpt5 = model_name.startswith('gpt-5')
+
     def run(prompt):
         try:
-            response = client.chat.completions.create(
-                model=model_name,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=TEMPERATURE,
-                max_tokens=MAX_TOKENS,
-            )
+            kwargs = {
+                "model": model_name,
+                "messages": [{"role": "user", "content": prompt}],
+            }
+            if is_gpt5:
+                kwargs["max_completion_tokens"] = MAX_TOKENS
+                # temperature omitted — gpt-5 models only accept default (1.0)
+            else:
+                kwargs["max_tokens"] = MAX_TOKENS
+                kwargs["temperature"] = TEMPERATURE
+
+            response = client.chat.completions.create(**kwargs)
             return response.choices[0].message.content
         except Exception as e:
             print(f"  GPT error: {e}")
